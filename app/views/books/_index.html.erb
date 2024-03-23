@@ -21,6 +21,7 @@
           <% end %>
         </td>
         <td><%= book.body %></td>
+        <%= render 'books/favorite', book: book %>
       </tr>
     <% end %>
   </tbody>
