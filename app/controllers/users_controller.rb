@@ -4,13 +4,14 @@ before_action :ensure_correct_user, only: [:update, :edit]
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
+    @show_favorite = false
   end
 
   def index
     @users = User.all
     @book = Book.new
   end
-  
+
   def edit
     @user = User.find(params[:id])
   end
@@ -36,5 +37,5 @@ before_action :ensure_correct_user, only: [:update, :edit]
       redirect_to user_path(current_user)
     end
   end
-  
+
 end

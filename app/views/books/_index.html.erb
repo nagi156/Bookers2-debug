@@ -21,7 +21,9 @@
           <% end %>
         </td>
         <td><%= book.body %></td>
-        <%= render 'books/favorite', book: book %>
+        <% if show_favorite %>
+        <td><%= render 'favorite', book: book %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
