@@ -22,7 +22,10 @@
         </td>
         <td><%= book.body %></td>
         <% if show_favorite %>
-        <td><%= render 'favorite', book: book %></td>
+        <td><%= render 'favorites/favorite', book: book %></td>
+        <% end %>
+        <% if show_comment %>
+        <td>コメント件数：<%= book.book_comments.count %></td>
         <% end %>
       </tr>
     <% end %>

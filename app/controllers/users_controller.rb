@@ -5,6 +5,7 @@ before_action :ensure_correct_user, only: [:update, :edit]
     @books = @user.books
     @book = Book.new
     @show_favorite = false
+    @show_comment = false
   end
 
   def index
