@@ -11,8 +11,7 @@ class BooksController < ApplicationController
     @book = Book.new
     @books = Book.all
     @user = current_user
-    @show_favorite = true
-    @show_comment = true
+    
   end
 
   def create
