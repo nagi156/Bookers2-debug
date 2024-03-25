@@ -13,23 +13,23 @@ class User < ApplicationRecord
   # フォローしているユーザー/フォロワーの取得
   has_many :followings, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
-  
+
   has_one_attached :profile_image
 
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: {maximum: 50 }
-  
+
   # ユーザープロフィール画像のメソッド
   def get_profile_image
     (profile_image.attached?)? profile_image : 'no_image.jpg'
   end
   # フォロー
   def follow(user)
-    active_relationships.create(followed_id: user_id)
+    active_relationships.create(followed_id: user.id)
   end
   # フォロー削除
   def unfollow(user)
-    active_relationships.find_by(followed_id: user_id).destroy
+    active_relationships.find_by(followed_id: user.id).destroy
   end
   # フォローしているかの確認
   def following?(user)
