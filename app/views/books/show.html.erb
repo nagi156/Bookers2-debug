@@ -18,9 +18,17 @@
           </td>
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
+          <!--いいね機能-->
           <td id="favorite_btn_<%= @book.id %>">
             <%= render 'favorites/favorite', book: @book %>
           </td>
+          <!--コメント数-->
+           <td>
+            <span id="comment_counter">
+              コメント数：<%= render 'book_comments/count', book: @book %>
+            </span>
+           </td>
+           <!--編集ボタン-->
           <% if @user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
@@ -28,16 +36,19 @@
         </tr>
       </table>
       <!--コメント一覧-->
-      <%= render 'book_comments/index', book: @book %>
+      <div id="comments_index">
+        <%= render 'book_comments/index', book: @book %>
+      </div>
       <!--コメント機能-->
-      <%= form_with model: [@book, @book_comment] do |f| %>
-        <div class="form-group">
-          <%= f.text_area :comment, rows: '5', class: "form-control introduction" %>
-        </div>
-        <div class="form-group">
-          <%= f.submit "送信" %>
-        </div>
-      <% end %>
+      <%= render "book_comments/form", book: @book, book_comment: @book_comment %>
+      <!--%= form_with model: [@book, @book_comment], local: false do |f| %>-->
+      <!--  <div class="form-group">-->
+      <!--    %= f.text_area :comment, rows: '5', class: "form-control introduction", id: "comment_textarea" %>-->
+      <!--  </div>-->
+      <!--  <div class="form-group">-->
+      <!--    %= f.submit "送信" %>-->
+      <!--  </div>-->
+      <!--% end %>-->
     </div>
   </div>
 </div>
