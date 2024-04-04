@@ -19,7 +19,7 @@ class User < ApplicationRecord
   # DM機能
   has_many :entries, dependent: :destroy
   has_many :messages, dependent: :destroy
-
+  has_many :rooms, through: :entries
 
   has_one_attached :profile_image
 
@@ -45,7 +45,6 @@ class User < ApplicationRecord
   # フォローしているかの確認
   def following?(user)
     followings.include?(user)
-    # reverse_relationships.find_by(follower_id: user_id).present?
   end
 
   # 検索機能

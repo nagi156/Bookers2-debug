@@ -26,4 +26,8 @@
       <i class="fas fa-user-cog"></i>
     <% end %>
   <% end %>
+  <!--チャット開始ボタン-->
+  <% if current_user != user && current_user.following?(user) && user.following?(current_user)%>
+    <td><%= link_to 'chatを始める', message_path(user.id), class: "ml-3" %></td>
+  <% end %>
 </div>
