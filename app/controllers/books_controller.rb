@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :ensure_correct_user, only: [:update, :edit]
+  
   def show
     @book = Book.find(params[:id])
     unless ViewCount.find_by(user_id: current_user.id, book_id: @book.id)
