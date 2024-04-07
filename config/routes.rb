@@ -17,6 +17,6 @@ Rails.application.routes.draw do
   end
 
   resources :messages, only: [:show, :create, :destroy]
-  resources :groups, only:[:new, :index, :show, :create, :edit, :up]
+  resources :groups, only:[:new, :index, :show, :create, :edit, :update]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
