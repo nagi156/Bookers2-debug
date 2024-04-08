@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   resources :messages, only: [:show, :create, :destroy]
   resources :groups, only:[:new, :index, :show, :create, :edit, :update] do
     resource :group_users, only: [:create, :destroy]
+    get "new_mail" => "groups#new_mail"
+    get "send_mail" => "groups#send_mail"
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
