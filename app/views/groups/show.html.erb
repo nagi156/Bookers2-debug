@@ -8,28 +8,38 @@
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>Group Detail</h2>
-        <table class='table'>
-          <tbody>
-            <tr>
-              <td><%= image_tag @group.get_group_image, size:"50x50" %></td>
-              <td><%= @group.name %></td>
-              <td><%= @group.introduction %></td>
-              <td><!--メンバーの名前一覧-->
-                <% @group.users.each do |user| %>
-                 <li style="list-style: none;"><%= user.name %></li>
-                <% end %>
-              </td>
-              <% if @group.is_owned_by?(current_user) %>
-                <td><%= link_to "Edit", edit_group_path(@group), class: "btn btn-sm btn-success" %></td>
-              <% elsif @group.already_member?(current_user) %>
-                <td><%= link_to "Leave this group",group_group_users_path(@group), method: :delete, class: "btn btn-sm btn-danger" %></td>
-              <% else %>
-                <td><%= link_to "Join this group", group_group_users_path(@group), method: :post, class: "btn btn-sm btn-success" %></td>
+      <table class='table table-hover table-inverse'>
+        <thead>
+          <tr>
+            <th></th>
+            <th>グループ名</th>
+            <th>紹介文</th>
+            <th>メンバー名</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= image_tag @group.get_group_image, size:"50x50" %></td>
+            <td><%= @group.name %></td>
+            <td><%= @group.introduction %></td>
+            <td><!--メンバーの名前一覧-->
+              <% @group.users.each do |user| %>
+               <li style="list-style: none;"><%= user.name %></li>
               <% end %>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+              <%= @group.owner.name %>
+            </td>
+            <% if @group.is_owned_by?(current_user) %>
+              <td><%= link_to "Edit", edit_group_path(@group), class: "btn btn-sm btn-success" %></td>
+              <td><%= link_to "Notice an Event"%></td>
+            <% elsif @group.already_member?(current_user) %>
+              <td><%= link_to "Leave this group",group_group_users_path(@group), method: :delete, class: "btn btn-sm btn-danger" %></td>
+            <% else %>
+              <td><%= link_to "Join this group", group_group_users_path(@group), method: :post, class: "btn btn-sm btn-success" %></td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
